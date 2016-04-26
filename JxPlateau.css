@@ -1,0 +1,36 @@
+#map {
+    display: block;
+}
+table {
+    height: 400px;
+    width: 100%;
+    border-collapse: collapse;
+}
+td {
+    border: solid black 2px;
+    height: 25px;
+    width: 100px;
+}
+#action {
+    background-color: #bd7207;
+    display: block;
+    margin-top: -40px;
+
+}
+#action h4   {
+    text-align: center;
+    font-size: 30px;
+}
+#b-haut1, #b-bas1, #b-gauche1, #b-droit1,#b-haut2, #b-bas2, #b-gauche2, #b-droit2 {
+      width: 100px;
+}
+#b-haut1, #b-bas1, #b-haut2, #b-bas2 {
+    margin-left: 50px;
+    
+}
+.Joueur1, .Joueur2 {
+    display: inline-block;
+    width: 25%;
+    margin-left: 260px;
+    margin-top: -30px;
+}
