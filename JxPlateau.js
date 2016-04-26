@@ -20,18 +20,8 @@ $(function () {
             
         
         },
-    
-        seDeplacer: function (direction, mouvement) {
-            $('#' + this.positionX + '-' + this.positionY).text('');
-            if (mouvement < 1) {
-                mouvement = 1;
-            }
-
-            if (mouvement > this.mouv) {
-                mouvement = this.mouv;
-            }
-            
-            //choisisr la direction
+        
+        seDeplacerUneCase: function (direction) {
             if (direction === "gauche") {
                 this.positionY = this.positionY - mouvement;
             } else if (direction === "droite") {
@@ -44,6 +34,28 @@ $(function () {
                 console.log(direction + " n'est pas un choix possible. Veuillez choisir entre : haut, bas, gauche ou droite.");
             }
             
+        },
+    
+        seDeplacer: function (direction, mouvement) {
+            
+            //Effacer l'ancienne position
+            $('#' + this.positionX + '-' + this.positionY).text('');
+            
+            //mouvement toujours positif
+            if (mouvement < 1) {
+                mouvement = 1;
+            }
+            
+            //mouvement ne soit pas superieur a la vitesse max
+            if (mouvement > this.mouv) {
+                mouvement = this.mouv;
+            }
+            
+            var i;
+            for (var i=0; i < mouvement; i++) {
+                this.seDeplacerUneCase(direction);
+            }
+            //Joueur toujours dans le tableau
             if (this.positionX < 0 ) {
                 this.positionX = 0;
             }
@@ -58,9 +70,7 @@ $(function () {
                 this.positionY = 9;
             }
             
-            console.log(this.positionX);
-            console.log(this.positionY);
-            
+            //Affiche le joueur apres le deplacement
             $('#' + this.positionX + '-' + this.positionY).text(this.nom);
         }
         
