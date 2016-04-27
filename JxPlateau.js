@@ -37,7 +37,7 @@ $(function () {
         },
     
         seDeplacer: function (direction, mouvement) {
-            
+        
             //Effacer l'ancienne position
             $('#' + this.positionX + '-' + this.positionY).text('');
             
@@ -51,8 +51,8 @@ $(function () {
                 mouvement = this.mouv;
             }
             
-            var i;
-            for (var i=0; i < mouvement; i++) {
+             var i;
+            for (i=0; i < mouvement; i++) {
                 this.seDeplacerUneCase(direction);
             }
             //Joueur toujours dans le tableau
