@@ -21,15 +21,15 @@ $(function () {
         
         },
         
-        seDeplacerUneCase: function (direction) {
+        seDeplacerDuneCase: function (direction) {
             if (direction === "gauche") {
-                this.positionY = this.positionY - mouvement;
+                this.positionY = this.positionY - 1;
             } else if (direction === "droite") {
-                this.positionY = Number(this.positionY) + Number(mouvement);
+                this.positionY = this.positionY + 1;
             } else if (direction === "haut") {
-                this.positionX = this.positionX - mouvement;
+                this.positionX = this.positionX - 1;
             } else if (direction === "bas") {
-                this.positionX = Number(this.positionX) + Number(mouvement);
+                this.positionX = this.positionX + 1;
             } else {
                 console.log(direction + " n'est pas un choix possible. Veuillez choisir entre : haut, bas, gauche ou droite.");
             }
@@ -51,25 +51,26 @@ $(function () {
                 mouvement = this.mouv;
             }
             
-             var i;
-            for (i=0; i < mouvement; i++) {
-                this.seDeplacerUneCase(direction);
+            //Deplacer le joueur
+            var i;
+            for (i = 0; i < mouvement; i++) {
+                this.seDeplacerDuneCase(direction);
             }
+            
             //Joueur toujours dans le tableau
-            if (this.positionX < 0 ) {
+            if (this.positionX < 0) {
                 this.positionX = 0;
             }
             
-            if (this.positionX > 9 ) {
+            if (this.positionX > 9) {
                 this.positionX = 9;
             }
             if (this.positionY < 0) {
                 this.positionY = 0;
             }
-            if (this.positionY > 9 ) {
+            if (this.positionY > 9) {
                 this.positionY = 9;
             }
-            
             //Affiche le joueur apres le deplacement
             $('#' + this.positionX + '-' + this.positionY).text(this.nom);
         }
@@ -89,7 +90,6 @@ $(function () {
         console.log(joueur.decrireJoueur());
     });
 
-    console.log(joueur1.positionX)
     $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 10)).css('background', 'grey');
     $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 10)).css('background', 'grey');
     $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 10)).css('background', 'grey');
