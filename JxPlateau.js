@@ -73,6 +73,10 @@ $(function () {
             }
             //Affiche le joueur apres le deplacement
             $('#' + this.positionX + '-' + this.positionY).text(this.nom);
+            
+            if (this.positionX === bloc){
+                this.positionX === this.positionX -1;
+            }
         }
         
     
@@ -90,12 +94,12 @@ $(function () {
         console.log(joueur.decrireJoueur());
     });
 
-    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 10)).css('background', 'grey');
-    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 10)).css('background', 'grey');
-    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 10)).css('background', 'grey');
-    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 10)).css('background', 'grey');
-    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 10)).css('background', 'grey');
-    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 10)).css('background', 'grey');
+    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('bloc');
+    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('bloc');
+    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('bloc');
+    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('bloc');
+    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('bloc');
+    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('bloc');
     $('#' + joueur1.positionX + "-" + joueur1.positionY).text(joueur1.nom);
     $('#' + joueur2.positionX + "-" + joueur2.positionY).text(joueur2.nom);
     
