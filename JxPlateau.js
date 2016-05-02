@@ -7,6 +7,8 @@ $(function () {
             this.mouv       = 3;
             this.positionY  = Math.floor(Math.random() * 9);
             this.positionX  = Math.floor(Math.random() * 9);
+            this.futurPositionX = 0;
+            this.futurPositionY = 0;
         },
     
         decrireJoueur: function () {
@@ -22,16 +24,26 @@ $(function () {
         },
         
         seDeplacerDuneCase: function (direction) {
+            
+            var futurPositionY = this.positionY;
+            var futurPositionX = this.positionX;
+            
+            
             if (direction === "gauche") {
-                this.positionY = this.positionY - 1;
+                futurPositionY = this.positionY - 1;
             } else if (direction === "droite") {
-                this.positionY = this.positionY + 1;
+                futurPositionY = this.positionY + 1;
             } else if (direction === "haut") {
-                this.positionX = this.positionX - 1;
+                futurPositionX = this.positionX - 1;
             } else if (direction === "bas") {
-                this.positionX = this.positionX + 1;
+                futurPositionX = this.positionX + 1;
             } else {
                 console.log(direction + " n'est pas un choix possible. Veuillez choisir entre : haut, bas, gauche ou droite.");
+            }
+            
+            if (!$('#' + futurPositionX + '-' + futurPositionY).is('.bloc')) {
+                this.positionY = futurPositionY;
+                this.positionX = futurPositionX;
             }
             
         },
@@ -74,15 +86,10 @@ $(function () {
             //Affiche le joueur apres le deplacement
             $('#' + this.positionX + '-' + this.positionY).text(this.nom);
             
-            if (this.positionX === bloc){
-                this.positionX === this.positionX -1;
-            }
         }
-        
     
     };
-
-
+    
     var joueur1 = Object.create(Joueur);
     joueur1.initJoueurParDefaut("Kramouille");
 
@@ -105,10 +112,10 @@ $(function () {
     
     $('#b-haut1').click(function () {
         joueur1.seDeplacer('haut', $('#m1').val());
-    }); 
+    });
     $('#b-haut2').click(function () {
         joueur2.seDeplacer('haut', $('#m2').val());
-    }); 
+    });  
     $('#b-bas1').click(function () {
         joueur1.seDeplacer('bas', $('#m1').val());
     }); 
