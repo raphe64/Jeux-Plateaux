@@ -7,8 +7,6 @@ $(function () {
             this.mouv       = 3;
             this.positionY  = Math.floor(Math.random() * 9);
             this.positionX  = Math.floor(Math.random() * 9);
-            this.futurPositionX = 0;
-            this.futurPositionY = 0;
         },
     
         decrireJoueur: function () {
