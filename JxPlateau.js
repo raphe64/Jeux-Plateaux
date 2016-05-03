@@ -47,6 +47,22 @@ $(function () {
                 this.positionX = futurPositionX;
             }
             
+            if ($('#' + futurPositionX + '-' + futurPositionY).is('.arme1')) {
+                this.arme = this.arme + 10;
+            }
+            
+            if ($('#' + futurPositionX + '-' + futurPositionY).is('.arme2')) {
+                this.sante = this.sante + 50;
+            }
+            
+            if ($('#' + futurPositionX + '-' + futurPositionY).is('.arme3')) {
+                this.arme = this.arme + 5;
+                
+            }
+            
+            console.log(this.sante);
+            console.log(this.arme);
+            
         },
     
         seDeplacer: function (direction, mouvement) {
@@ -112,9 +128,9 @@ $(function () {
     $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('bloc');
     
     //Placement des armes sur la map
-    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('arme1').text('Arme');
-    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('arme2').text('Arme');
-    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('arme3').text('Arme');
+    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('arme1').text('Arme1');
+    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('arme2').text('Arme2');
+    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('arme3').text('Arme3');
     
     //Texte de presentation des joueurs
     $('#' + joueur1.positionX + "-" + joueur1.positionY).text(joueur1.nom);
