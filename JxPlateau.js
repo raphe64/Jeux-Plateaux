@@ -4,6 +4,7 @@ $(function () {
             this.nom        = nom;
             this.sante      = 100;
             this.arme       = 0;
+            this.defense    = 0;
             this.mouv       = 3;
             this.positionY  = Math.floor(Math.random() * 9);
             this.positionX  = Math.floor(Math.random() * 9);
@@ -13,6 +14,7 @@ $(function () {
             var description = "Je suis:                                               " + this.nom +
                               "\nPoints de vie:                                     " + this.sante + 
                               "\nArme:                                                  " + this.arme + " de degat" +
+                              "\nDefense:                                             " + this.defense +                                          
                               "\nVitesse de mouvement:                     " + this.mouv +
                               "\nPosition actuelle:                                {" + this.positionY + ";" + this.positionX + "}.";
 
@@ -49,14 +51,17 @@ $(function () {
             
             if ($('#' + futurPositionX + '-' + futurPositionY).is('.arme1')) {
                 this.arme = this.arme + 10;
+                $('.arme1').removeClass('arme1');
             }
             
             if ($('#' + futurPositionX + '-' + futurPositionY).is('.arme2')) {
                 this.sante = this.sante + 50;
+                $('.arme1').removeClass('arme2');
             }
             
             if ($('#' + futurPositionX + '-' + futurPositionY).is('.arme3')) {
-                this.arme = this.arme + 5;
+                this.arme = this.defense + 5;
+                $('.arme1').removeClass('arme3');
                 
             }
             
