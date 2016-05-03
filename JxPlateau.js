@@ -3,7 +3,7 @@ $(function () {
         initJoueurParDefaut: function (nom) {
             this.nom        = nom;
             this.sante      = 100;
-            this.arme       = 10;
+            this.arme       = 0;
             this.mouv       = 3;
             this.positionY  = Math.floor(Math.random() * 9);
             this.positionX  = Math.floor(Math.random() * 9);
@@ -23,10 +23,11 @@ $(function () {
         
         seDeplacerDuneCase: function (direction) {
             
+            //Création des variables du futur deplacement qui sera egale a la position actuel
             var futurPositionY = this.positionY;
             var futurPositionX = this.positionX;
             
-            
+            //Condition de mouvement en fonction de la direction
             if (direction === "gauche") {
                 futurPositionY = this.positionY - 1;
             } else if (direction === "droite") {
@@ -39,6 +40,8 @@ $(function () {
                 console.log(direction + " n'est pas un choix possible. Veuillez choisir entre : haut, bas, gauche ou droite.");
             }
             
+            //Si la case n'est pas un bloc alors la postion actuelle est egale a la futur poisition
+            //Donc si la case est un bloc alors le joueur ne se deplace pas
             if (!$('#' + futurPositionX + '-' + futurPositionY).is('.bloc')) {
                 this.positionY = futurPositionY;
                 this.positionX = futurPositionX;
@@ -98,16 +101,26 @@ $(function () {
     joueurs.forEach(function (joueur) {
         console.log(joueur.decrireJoueur());
     });
-
+    
+    //Placement des cases grises
+    
     $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('bloc');
     $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('bloc');
     $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('bloc');
     $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('bloc');
     $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('bloc');
     $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('bloc');
+    
+    //Placement des armes sur la map
+    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('arme1').text('Arme');
+    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('arme2').text('Arme');
+    $('#' + Math.floor(Math.random() * 9) + "-" + Math.floor(Math.random() * 9)).addClass('arme3').text('Arme');
+    
+    //Texte de presentation des joueurs
     $('#' + joueur1.positionX + "-" + joueur1.positionY).text(joueur1.nom);
     $('#' + joueur2.positionX + "-" + joueur2.positionY).text(joueur2.nom);
     
+    //Deplacement du joueurs quand on clique sur la direction et le nombre de mouvement
     $('#b-haut1').click(function () {
         joueur1.seDeplacer('haut', $('#m1').val());
     });
@@ -132,6 +145,8 @@ $(function () {
     $('#b-droit2').click(function () {
         joueur2.seDeplacer('droite', $('#m2').val());
     }); 
+    
+    //Nom du joueur sur la map
     $('#joueur1').text(joueur1.decrireJoueur());
     $('#joueur2').text(joueur2.decrireJoueur());
     
