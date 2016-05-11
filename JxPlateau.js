@@ -44,10 +44,6 @@ $(function () {
             
             //Si la case n'est pas un bloc alors la postion actuelle est egale a la futur poisition
             //Donc si la case est un bloc alors le joueur ne se deplace pas
-            if (!$('#' + futurPositionX + '-' + futurPositionY).is('.bloc')) {
-                this.positionY = futurPositionY;
-                this.positionX = futurPositionX;
-            }
             
             if ($('#' + futurPositionX + '-' + futurPositionY).is('.arme1')) {
                 this.arme = this.arme + 10;
@@ -56,17 +52,23 @@ $(function () {
             
             if ($('#' + futurPositionX + '-' + futurPositionY).is('.arme2')) {
                 this.sante = this.sante + 50;
-                $('.arme1').removeClass('arme2');
+                $('.arme2').removeClass('arme2');
             }
             
             if ($('#' + futurPositionX + '-' + futurPositionY).is('.arme3')) {
                 this.arme = this.defense + 5;
-                $('.arme1').removeClass('arme3');
+                $('.arme3').removeClass('arme3');
                 
             }
             
-            console.log(this.sante);
-            console.log(this.arme);
+            var futurText = $('#' + futurPositionX + '-' + futurPositionY).text();
+            
+            if ((futurText === joueur1.nom) || (futurText === joueur2.nom)) {
+                console.log("J'attaque");
+            } else if (!$('#' + futurPositionX + '-' + futurPositionY).is('.bloc')) {
+                this.positionY = futurPositionY;
+                this.positionX = futurPositionX;
+            }
             
         },
     
@@ -108,7 +110,24 @@ $(function () {
             //Affiche le joueur apres le deplacement
             $('#' + this.positionX + '-' + this.positionY).text(this.nom);
             
+        },
+        
+        attaquer: function (cible) {
+            if (this.sante > 0) {
+                console.log(this.nom + 'attaque' + cible.nom + ' et lui fait ' + this.arme + 'de dégats');
+                cible.sante = cible.sante - this.arme;
+                if (cible.sante > 0) {
+                    console.log(cible.nom + 'a encore ' + cible.sante + 'points de vie');
+                } else {
+                    cible.sante = 0;
+                    console.log(cible.nom + ' est mort !');
+                }
+                
+            }
+                
         }
+        
+        
     
     };
     
@@ -118,10 +137,10 @@ $(function () {
     var joueur2 = Object.create(Joueur);
     joueur2.initJoueurParDefaut("Pantxo");
 
-    var joueurs = [joueur1, joueur2];
-    joueurs.forEach(function (joueur) {
-        console.log(joueur.decrireJoueur());
-    });
+    var joueurs = {};
+    joueurs[joueur1.nom] = joueur1;
+    joueurs[joueur2.nom] = joueur2;
+    console.log(joueurs);
     
     //Placement des cases grises
     
